@@ -20,9 +20,9 @@ This algorithms were built by mathematicians, statisticians & computer scientist
 
 ## Types of ML algorithms
 
-_ML algorithms are step by step procedure or mathematical procedures that allows machine to learn patterns from data and make predictions on new data._
+ML algorithms are step by step procedure or mathematical procedures that allows machine to learn patterns from data and make predictions on new data.
 
-_The outcome of applying a machine learning algorithm to a dataset is a trained model._
+The outcome of applying a machine learning algorithm to a dataset is a trained model.
 
 **This alogorithms are mainly divided into 3 types -**
 
