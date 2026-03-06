@@ -1,6 +1,9 @@
-# Linear Regression
+# What is Linear Regression
 
-Linear Regression is supervised learning algorithm. Meaning it learns from labeled data.
+Linear Regression is supervised ML algorithm. Meaning it learns from labeled data.  
+
+Its main goal is to find best fit straight line on graph of training data. That is, find the linear equation (represented in slope intercept form i.e y = mx + b) which calculates/predicts y for training data. And then compare actual y with predicted y so to calculate MSE and further Gradient.
+
 
 ## Explaintion
 
