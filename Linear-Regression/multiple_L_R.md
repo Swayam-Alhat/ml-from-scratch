@@ -2,7 +2,7 @@
 
 ## Explaination about why we need feature scaling
 
-> Explaination is based around linear regression algorithm because that involves using gradient descent
+> Explaination is based around linear regression algorithm. i.e first explain what problem arises when we dont scale features in linear regression algorithm. Then explain what it benefits when we scale features in linear
 
 In simple linear regression, we can find an appropriate learning rate based on our single feature's range. Too high and the gradient explodes, too low and learning is painfully slow — but at least one good value exists.
 
