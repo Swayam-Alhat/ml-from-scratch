@@ -20,6 +20,8 @@ So, algorithm aims to find the linear equation which can predict house price for
 
 Now, if we plot the graph of above data, we will have house size on X-axis & house price on Y-axis.
 
+![Alt text](figure.png)
+
 So, in `y = mx + b`,  
 y is any point on Y-axis  
 x is any point on X-axis  
