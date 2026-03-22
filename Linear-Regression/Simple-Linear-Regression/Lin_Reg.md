@@ -4,8 +4,6 @@ Linear Regression is supervised ML algorithm. Meaning it learns from labeled dat
 
 Its goal is to find the linear equation (i.e a straight line) on training data graph which best fits training data. That is, that line covers most of the data points
 
-> Note : Actually m and b values are updated at each iteration.
-
 ## Explaintion
 
 Training data :
