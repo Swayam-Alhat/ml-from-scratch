@@ -4,6 +4,8 @@ Logistic Regression is ML algorithm used for classification. Unlike linear regre
 
 Example, to predict if email is spam or not spam.
 
+To know more about logistic regression, Read article from IBM on [Logistic Regression](https://www.ibm.com/think/topics/logistic-regression)
+
 _Since, probability lies between 0 and 1. we need to calculate value of y (target variable) which lies within 0 and 1._
 
 Thus, we use **sigmoid function** which outputs value between 0 and 1. Sigmoid function is also known as Logistic function.
@@ -48,13 +50,33 @@ We can then exponentiate both sides to get back to odds:
 
 $`\frac{p(x)}{1 - p(x)}`$ = $e^{b_0 + b_1 . x_1}$
 
-Solving for `p(x)`we get the sigmoid function, which helps ensure the predicted value stays between 0 and 1:
+Solving for `p(x)`we get the _Sigmoid function_, which helps ensure the predicted value stays between 0 and 1:
 
 p(x) = $`\frac{e^{b_0 + b_1 . x_1}}{1 + e^{b_0 + b_1 . x_1}}`$
 
 > [!NOTE]  
-> The above form is equivalent to the more common compact form:
+> The above form is equivalent to the more common compact form of Sigmoid function:
 > $$p(x) = \frac{1}{1 + e^{-(b_0 + b_1 x_1)}}$$
 > Multiply numerator and denominator by $`e^{-(b_0 + b_1 . x_1)}`$ and solve it. We will get commonly used Sigmoid function form
 
 This transformation allows logistic regression to output valid probabilities, even though we’re modeling them using a linear function underneath.
+
+## Odds Ratio
+
+_The odds ratio tells us how the odds change when the input variable x1 increases by one unit._
+
+Example, odds of $`x_1`$ is
+
+$`odds(x_1)`$ = $`e^{b_0 + b_1 . x_1}`$
+
+If we increase $`x_1`$ by 1 unit, we get
+
+$`odds(x_1 + 1)`$ = $`e^{b_0 + b_1 . ( x_1 + 1 )}`$
+
+$`odds(x_1 + 1)`$ = $`e^{b_0 + b_1 x_1} . e^{b_1}`$
+
+This means that for every one-unit increase in $`x_1`$, the odds are multiplied by $`e^{b_1}`$ . This multiplier is the _odds ratio_.
+
+- If $`b_1`$ > 1, then the odds increase (event becomes more likely)
+- If $`b_1`$ < 1, then the odds decrease (events becomes less likely)
+- If $`b_1`$ = 1, the odds ratio is 0, meaning the input has no effect on the odds
