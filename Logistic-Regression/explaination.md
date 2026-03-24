@@ -77,6 +77,6 @@ $`odds(x_1 + 1)`$ = $`e^{b_0 + b_1 x_1} . e^{b_1}`$
 
 This means that for every one-unit increase in $`x_1`$, the odds are multiplied by $`e^{b_1}`$ . This multiplier is the _odds ratio_.
 
-- If $`b_1`$ > 1, then the odds increase (event becomes more likely)
-- If $`b_1`$ < 1, then the odds decrease (events becomes less likely)
-- If $`b_1`$ = 1, the odds ratio is 0, meaning the input has no effect on the odds
+- If $`b_1`$ > 0, then $`e^{b_1}`$ > 1, odds increase (event becomes more likely)
+- If $`b_1`$ < 0, then $`e^{b_1}`$ < 1, odds decrease (event becomes less likely)
+- If $`b_1`$ = 0, then $`e^{b_1}`$ = 1, odds unchanged (input has no effect)
