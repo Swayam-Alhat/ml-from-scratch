@@ -207,11 +207,13 @@ So, likelihood $`L(\theta)`$ represents if current parameters (m and b) are opti
 
 This formula has some flaws -
 
-- numerical underflow (multiplying hundreds of tiny probabilities together approaches zero and breaks floating point)  
+- Numerical underflow (multiplying hundreds of tiny probabilities together approaches zero and breaks floating point)  
   **_solution - Take Logarithm of whole function_**
 
 - We want to apply gradient descent for optimization and gradient descent minimizes.  
-  **_solution - multiply with_** $`(-1)`$
+   **_solution - multiply with_** $`(-1)`$
+
+  > [!NOTE]
 
 - As we apply Logarithm, **product** converts into **sum**.  
   **_solution - divide it by n (total number of data points)_**  
