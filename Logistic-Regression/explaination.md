@@ -135,7 +135,7 @@ _Incorrect prediction means current values of `m` and `b` are not optimal_
 
 **Now, $`y_p`$ is predicted value for current values of m and b (weights and bias)**
 
-##### But, to find the optimal values of `m` and `b`, we need a function/equation that tells the likelihood that current weights and bias are optimal.
+#### But, to find the optimal values of `m` and `b`, we need a function/equation that tells the likelihood that current weights and bias are optimal.
 
 Here comes Likelihood formula -
 
