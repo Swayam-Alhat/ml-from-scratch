@@ -24,7 +24,7 @@ because this outputs value of y (target variable) within (-∞ , ∞). But Logis
 
 ![odds-figure](./figures/odds-figure.png)
 
-> In logistic Regression, we work with odds since we have to predict if outcome is favourable or not.
+> In logistic Regression, we work with odds since we have to predict if outcome is **favourable** or **not favourable**.
 
 So, if we take odds of input x
 
@@ -80,3 +80,59 @@ This means that for every one-unit increase in $`x_1`$, the odds are multiplied 
 - If $`b_1`$ > 0, then $`e^{b_1}`$ > 1, odds increase (event becomes more likely)
 - If $`b_1`$ < 0, then $`e^{b_1}`$ < 1, odds decrease (event becomes less likely)
 - If $`b_1`$ = 0, then $`e^{b_1}`$ = 1, odds unchanged (input has no effect)
+
+## How Logistic Regression algorithm learns
+
+Since we know logistic regression is used for classification, it calculates probability of whether given input `x` belongs to class 1 or not.
+
+_So we need a function which outputs value between 0 and 1.  
+(since probability is between 0 and 1_)
+
+linear function `y =  mx + b` outputs value between −∞ to ∞. So we need a function which transforms it into value which is between 0 and 1
+
+**Sigmoid does it**
+
+Standard formula of sigmoid -
+
+$`σ(z) = \frac{1}{1 + e^{-z}}`$
+
+where, $`z`$ is linear prediction. Meaning predicted value using `z =  mx + b`
+
+So, basically, $`z`$ is output of `mx + b`
+
+So we can say,  
+$`z`$ = $`mx + b`$
+
+where `m` is weight and `b` is bias`
+
+let $`z`$ be the predicted value using linear function $`z`$ = $`mx + b`$
+
+So, initially, It does the same as linear regression does.
+
+Calculates $`z`$ using linear function $`z`$ = $`mx + b`$
+
+Then apply Sigmoid function on it
+
+σ ($`z`$) = $`\frac{1}{1 + e^{-z}}`$
+
+After calculating, we get value of σ($`z`$) which is between 0 and 1. **This is estimated probability**.
+
+Let $`y_p`$ be the estimated probability
+
+So, σ($`z`$) = $`y_p`$
+
+Now, we compare $`y`$ (actual value) and $`y_p`$ (predicted value)
+
+- If $`y`$ is 1 and $`y_p`$ is close to 1, we say our prediction is **correct**.
+
+- If $`y`$ is 0 and $`y_p`$ is close to 0, we say our prediction is **correct**.
+- If $`y`$ is 1 and $`y_p`$ is close to 0, we say our prediction is **incorrect**.
+- If $`y`$ is 0 and $`y_p`$ is close to 1, we say our prediction is **incorrect**.
+
+_Correct prediction means current values of `m` and `b` are optimal._
+
+_Incorrect prediction means current values of `m` and `b` are not optimal_
+
+**Now, $`y_p`$ is predicted value for current values of m and b (weights and bias)**
+
+But, to find the optimal values of m and b, we need a function/equation that tells the likelihood that current weights are being optimal
