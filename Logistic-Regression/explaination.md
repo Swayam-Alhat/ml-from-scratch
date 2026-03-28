@@ -177,7 +177,7 @@ log($`L(\theta)`$) = $` \frac{-1}{n} \sum_{i=1}^{n} y . log(y_p) + (1 - y) . log
 
 **_This is what we minimizes using gradient descent_**
 
-> [!NOTE]
+> [!NOTE]  
 > Basically, we **_maximize_** the function as we want the value close to **1**, but **_gradient descent_** formula is fixed and it always **_minimizes_**. Thats why, we flipped function curve by negating it (**_multiplied with -1_**). So. now we use original gradient descent (which minimizes) but as we flipped the sides, we are actually maximizing the function  
 > Read about gradient descent from Gradient-descent.md file
 
@@ -185,9 +185,13 @@ log($`L(\theta)`$) = $` \frac{-1}{n} \sum_{i=1}^{n} y . log(y_p) + (1 - y) . log
 
 **_So after calculating partial derivative of cross entropy w.r.t $`\theta`$ (single parameter), we get_**
 
-$$\frac{\partial J(\theta)}{\partial \theta} = \frac{1}{n} x ( y - y_p)$$
+$$\frac{\partial J(\theta)}{\partial \theta} = \frac{1}{n} \sum_{i=1}^{n} ( y_p - y) x$$
 
 So, **this is the formula for gradient calculation**
+
+> [!NOTE]  
+> Gradient formula for cross entropy of b (bias), is same except multiplication with $`x`$  
+> $$\frac{\partial J(\theta)}{\partial \theta} = \frac{1}{n} \sum_{i=1}^{n} ( y_p - y)$$
 
 then, we update parameter $`\theta`$
 
@@ -207,7 +211,7 @@ here,
 
 ### Steps algorithm follow to learn (find optimal parameters)
 
-1. Initialize parameters (m and b) with random value (0)
+1. Initialize parameters (m and b) with zero
 
 2. predict output using Sigmoid function
 
