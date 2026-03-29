@@ -219,20 +219,20 @@ here,
 
 4. Calculate gradient of loss function using gradient formula and then update parameters (m and b) using update formula
 
-5. Again repeat from step 1 until loss calculated using loss function is unchanged or changes slightly  
+5. Again repeat from step 2 until loss calculated using loss function is unchanged or changes slightly  
    (**_At this point, we get optimal values of m and b which are used for prediction on new unseen data_**)
 
 ---
 
-# Testing of model
+# Results
 
-After training, we got loss curve,
+### Loss Curve
 
 ![Loss curve](loss_curve.png)
 
-This means our model converged. I.e we got optimal values of parameters
+Loss dropped from ~0.69 to ~0.49 over 2000 epochs, confirming the model
+converged and gradient descent found optimal parameters.
 
-Also, accuracy test, meaning we compare prediction and actual values or outcome, we got  
-$81.98$ %
+### Accuracy
 
-**_This means out of all predictions, almost 82% predictions are accurate_**
+**81.98%** on unseen test data
