@@ -19,64 +19,91 @@ df.index = range(len(df))
 # training data
 training_data = df.iloc[:373, :]
 
-# implementation 
-splits = []
-for i in range(training_data.shape[1] - 1):
-    unique_values = np.sort(training_data.iloc[:,i].unique())
-    split = (unique_values[:-1] + unique_values[1:]) / 2
-    splits.append(split)
+# implementation
 
-# Now, splits contains array which contains split values for each feature. AT index 0, Glucose split values, At index 1, BloodPressure split values and so on
+depth = 1
+nodes = []
+for i in range(depth):
 
+    # Calculate split values
+    splits = []
 
-gini = []
+    # iterate all columns. except last one (target column)
+    for feature in training_data.columns[:-1]:
 
-index = 0
-for split in splits:
+        # find unique values and sort them to calculate split values
+        sorted_feature = np.sort(training_data[feature].unique())
 
-    gini_of_column = []
-    for i in split:
-
-        # get left node values
-        left_node = training_data.loc[training_data.iloc[:,index] <= i, training_data.columns[-1]].to_numpy()
-        # get right node values
-        right_node = training_data.loc[training_data.iloc[:,index] > i, training_data.columns[-1]].to_numpy()
-
-        # defence if any of above node is empty
-        # this will add gini as 1. i.e highest gini. SO it will be not picked as good gini
-        if len(left_node) == 0 or len(right_node) == 0:
-            gini_of_column.append(1.0)
-            continue
-
-        # left node gini
-        left_node_gini = 1 - (((len(left_node[left_node == 0]) / len(left_node))**2) + ((len(left_node[left_node == 1]) / len(left_node))**2))
-
-        # right node gini
-        right_node_gini = 1 - (((len(right_node[right_node == 0]) / len(right_node))**2) + ((len(right_node[right_node == 1]) / len(right_node))**2))
-
-        # weighted gini
-        weighted_gini = ((len(left_node) / (len(left_node) + len(right_node))) * left_node_gini) + ((len(right_node) / (len(left_node) + len(right_node))) * right_node_gini)
-
-        gini_of_column.append(weighted_gini)
+        # calculate split value
+        split_arr = (sorted_feature[:-1] + sorted_feature[1:]) / 2
+        
+        # add in splits list
+        splits.append(split_arr)
     
-    index = index + 1
-    gini.append(gini_of_column)
 
-# we get gini array
-# Now find best gini, and then split
+    # calculate gini and find best split values
+    best_gini_list = []
+    best_split_list = []
+    for i in range(len(splits)):
 
-best_splits = []
-best_gini = []
+        gini_arr = []
+        # iterate each split value
+        for val in splits[i]:
 
-for idx, val in enumerate(gini):
+            # get left node values
+            left_node_values = training_data.loc[training_data.iloc[:,i] <= val , training_data.columns[-1]].to_numpy()
 
-    # find min gini and store it
-    min_gini = np.min(val)
-    best_gini.append(min_gini)
+            # get right node values
+            right_node_values = training_data.loc[training_data.iloc[:,i] > val , training_data.columns[-1]].to_numpy()
+
+            # defence check if node values are empty
+            if len(left_node_values) == 0 or len(right_node_values) == 0:
+                gini_arr.append(1.0)
+                # skip further execution
+                continue
+
+            # calculate gini for left node
+            p0_for_left = len(left_node_values[left_node_values == 0]) / len(left_node_values)
+
+            p1_for_left = len(left_node_values[left_node_values == 1]) / len(left_node_values)
+
+            left_node_gini = 1 - ((p0_for_left**2) + (p1_for_left**2))
+
+
+
+            # calculate gini for right node
+            p0_for_right = len(right_node_values[right_node_values == 0]) / len(right_node_values)
+
+            p1_for_right = len(right_node_values[right_node_values == 1]) / len(right_node_values)
+
+            right_node_gini = 1 - ((p0_for_right**2) + (p1_for_right**2))
+
+
+            # calculate weighted gini
+            weighted_gini = ((len(left_node_values) / len(training_data.iloc[:,i])) * left_node_gini) + ((len(right_node_values) / len(training_data.iloc[:,i])) * right_node_gini)
+
+            gini_arr.append(weighted_gini)
+        
+        # get best gini, its index and split which produced it
+        best_gini = min(gini_arr)
+        best_split_index = gini_arr.index(best_gini)
+        best_split = splits[i][best_split_index]
+
+        # add best gini and split in their arrays
+        best_gini_list.append(best_gini)
+        best_split_list.append(best_split)
     
-    # find index of min gini and then best split
-    best_split = splits[idx][np.argmin(val)]
-    best_splits.append(best_split)
+    # get best gini
+    final_best_gini = min(best_gini_list)
+    # get best gini's index
+    final_best_gini_index = best_gini_list.index(final_best_gini)
+    # get best split value using best gini's index
+    final_split_value = best_split_list[final_best_gini_index]
+    # get index of best split value
+    final_split_value_index = best_split_list.index(final_split_value)
+    # get the feature of that split
+    best_feature = training_data.columns[final_split_value_index]
 
-
+    # store formed nodes
+    nodes.append({best_feature:final_split_value})
 
