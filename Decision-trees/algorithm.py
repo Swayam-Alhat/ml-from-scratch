@@ -182,14 +182,7 @@ def prune_tree(node):
     return node
 
 # get tree after pruning
-pruned_tree = prune_tree(tree)
-
-# print tree after pruning
-for i in pruned_tree:
-    print(i)
-    print(pruned_tree[i])
-    print("\n")
-
+final_decision_tree = prune_tree(tree)
 
 # Testing
 def prediction(decision_node, test_data):
@@ -234,7 +227,7 @@ for i in range(len(testing_data)):
     actual_outcome_arr.append(test_data[-1])
 
     # get prediction value for that instance
-    predicted_value = prediction(pruned_tree,test_data)
+    predicted_value = prediction(final_decision_tree,test_data)
 
     # add it in prediction array
     prediction_arr.append(predicted_value)
