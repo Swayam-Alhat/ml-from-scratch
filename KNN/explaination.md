@@ -45,4 +45,28 @@ This can also be a **weighted average** — closer neighbors get more influence 
 
 - **Small k** → sensitive to noise, overfits
 - **Large k** → smoother predictions, but may miss local patterns
-- Typical approach: try multiple values of k and pick the one with best validation performance (e.g. using cross-validation)
+
+#### Methods to select optimal k
+
+**Cross-Validation** - A commonly used technique for choosing the value of k is cross-validation. By splitting the dataset into training and validation sets and evaluating model performance across different values of k, the optimal k value can be determined based on which k produces the lowest error rate.
+
+**Common Values of k** - In practice, values of k such as 3, 5, or 7 are typically chosen. Smaller values of k allow the model to capture local patterns, while larger k values generalize better across the dataset.
+
+## Implementation
+
+For now, we are using **Pima Indians Diabetes dataset** to predict whether new patient is **diabetic** or **non-diabetic**.
+
+Since we have feature values as continuous values, we are using **_Euclidean distance metric_**.
+
+> [!NOTE]
+> Read and understand how Euclidean distance is calculated for data points.
+
+After understanding how Euclidean distance is calculated, we will know, if feature values are in different ranges, they affect the distance calculation.  
+Example,  
+Glucose ranges from ~0–200, while BMI ranges from ~18–50. This means Glucose differences dominate the distance calculation simply because its scale is larger — not because it's more important
+
+Thats why we need Feature scaling,  
+So before implementing, perform feature scaling on training and testing dataset
+
+> [!NOTE]
+> Use the mean and standard deviation of training data to scale testing data
