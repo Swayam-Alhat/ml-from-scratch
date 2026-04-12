@@ -82,3 +82,7 @@ Any data point that falls below 12.25 or above 46.25 is an **outlier** and gets 
 
 In our example, `78` falls outside the upper fence (46.25), so it gets removed.
 Clean dataset: `[21, 23, 24, 26, 28, 30, 31, 32, 35]`
+
+> [!NOTE]  
+> For dataset with multiple features, You apply IQR independently to each column, and remove a row if it's an outlier in any column.
+> One bad feature poisons the whole row
