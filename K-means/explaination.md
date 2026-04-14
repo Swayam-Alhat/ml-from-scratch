@@ -56,7 +56,7 @@ So, we get Q1 and Q3. **_This means, we got to know that 50% of data points in d
 
 > **_Because 75% - 25% is 50%. And since, 25% of data is below 25 & 75% of data is below 33.5_**
 
-Now, ***the middle 50% of data lives between 25 and 33.5. Everything between these two values is the "normal bulk" of our data***
+Now, **_the middle 50% of data lives between 25 and 33.5. Everything between these two values is the "normal bulk" of our data_**
 
 **But**,
 
@@ -84,3 +84,38 @@ Clean dataset: `[21, 23, 24, 26, 28, 30, 31, 32, 35]`
 > [!NOTE]  
 > For dataset with multiple features, You apply IQR independently to each column, and remove a row if it's an outlier in any column.
 > One bad feature poisons the whole row
+
+### Choose optimal K (number of clusters) using Elbow method
+
+K is numbers of clusters (groups) in which data will divide. But as we dont know anything about data, we dont know in how many groups it will divide.
+
+**That means, we don't know how many groups to form.**
+
+So, to find the optimal k, we use **_Elbow method_**
+
+#### Elbow method
+
+**_Elbow method is simply_**,  
+**Run k-means algorithm for each k values (from 1 to 10), and calculate final WCSS (Within Cluster Sum of Square) for each k values.**
+
+**WCSS measures how tightly packed each cluster is —
+for every point, calculate its squared distance from
+its cluster's centroid, then sum all of those up.
+Lower WCSS means tighter, better-formed clusters.**
+
+**After this, we plot graph where on X-axis, we have k values, and on Y-axis, we have WCSS.**
+
+**The point on graph where WCSS starts to decrease very slightly, and forms a elbow shape, that point's k value is optimal value**
+
+```
+WCSS
+|
+|*
+| *
+|  *
+|    *
+|       * * * * *
+|_________________________ k
+         ^
+        elbow = optimal k
+```
